@@ -1,10 +1,12 @@
 import { Component } from "react";
 import "./App.css";
+import Age from "./components/Age";
+import Name from "./components/Name";
 
 class App extends Component {
   state = {
-    name: "Vinh Hoang",
-    age: 31,
+    name: "Le Dinh Nghia Hung",
+    age: 100000,
     address: "658 Ngo Quyen",
     showName: false,
     showLoading: true,
@@ -43,8 +45,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Full Name: {this.state.showName && this.state.name}</h1>
-        <h2>My Age: {this.state.age}</h2>
+        <Name name={this.state.name} />
+        <Age age={this.state.age} />
         <p>My Address: {this.state.address}</p>
         <button onClick={this.increaseAge}>Increase my age</button>
         <button onClick={this.decreaseAge}>Decrease my age</button>
