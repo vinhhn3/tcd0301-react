@@ -5,6 +5,7 @@ class UserItem extends Component {
     return (
       <div className="card text-center">
         <img
+          alt=""
           src={this.props.user.avatar_url}
           className="round-img"
           style={{ width: "60px" }}
