@@ -7,6 +7,7 @@ import Navbar from "./components/layout/Navbar";
 import About from "./components/pages/About";
 import NotFound from "./components/pages/NotFound";
 import Search from "./components/users/Search";
+import User from "./components/users/User";
 import Users from "./components/users/Users";
 
 class App extends Component {
@@ -14,6 +15,7 @@ class App extends Component {
     usersData: [],
     title: "TCD0301-React",
     showLoading: false,
+    user: {},
   };
 
   searchUsers = async (text) => {
@@ -31,6 +33,11 @@ class App extends Component {
     this.setState({
       usersData: [],
     });
+  };
+
+  getUser = async (login) => {
+    const response = await axios.get(`https://api.github.com/users/${login}`);
+    this.setState({ user: response.data });
   };
 
   render() {
@@ -58,6 +65,17 @@ class App extends Component {
                 )}
               />
               <Route exact path="/about" component={About} />
+              <Route
+                exact
+                path="/user/:login"
+                render={(props) => (
+                  <User
+                    {...props}
+                    user={this.state.user}
+                    getUser={this.getUser}
+                  />
+                )}
+              />
               <Route path="" component={NotFound} />
             </Switch>
           </div>
