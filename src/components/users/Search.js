@@ -11,6 +11,9 @@ class Search extends Component {
 
   onClick = (event) => {
     event.preventDefault();
+    if (this.state.text.trim() === "") {
+      alert("Cannot be empty");
+    }
     this.setState({
       text: "",
     });
