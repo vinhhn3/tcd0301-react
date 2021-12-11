@@ -1,22 +1,21 @@
-import React, { Component } from "react";
+import React from "react";
 
-class UserItem extends Component {
-  render() {
-    return (
-      <div className="card text-center">
-        <img
-          alt=""
-          src={this.props.user.avatar_url}
-          className="round-img"
-          style={{ width: "60px" }}
-        />
-        <h3>{this.props.user.login}</h3>
-        <a href={this.props.user.html_url} className="btn btn-primary btn-sm">
-          More
-        </a>
-      </div>
-    );
-  }
-}
+const UserItem = ({ user }) => {
+  const { avatar_url, login, html_url } = user;
+  return (
+    <div className="card text-center">
+      <img
+        alt=""
+        src={avatar_url}
+        className="round-img"
+        style={{ width: "60px" }}
+      />
+      <h3>{login}</h3>
+      <a href={html_url} className="btn btn-primary btn-sm">
+        More
+      </a>
+    </div>
+  );
+};
 
 export default UserItem;
