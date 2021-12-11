@@ -13,11 +13,17 @@ class Search extends Component {
     event.preventDefault();
     if (this.state.text.trim() === "") {
       alert("Cannot be empty");
+      return;
     }
     this.props.searchUsers(this.state.text);
     this.setState({
       text: "",
     });
+  };
+
+  onClear = (event) => {
+    event.preventDefault();
+    this.props.clearUsers();
   };
 
   render() {
@@ -36,6 +42,13 @@ class Search extends Component {
             className="btn btn-dark btn-block"
             onClick={this.onClick}
           />
+          {this.props.usersData.length > 0 ? (
+            <button onClick={this.onClear} className="btn btn-light btn-block">
+              Clear
+            </button>
+          ) : (
+            ""
+          )}
         </form>
       </div>
     );

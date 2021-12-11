@@ -3,7 +3,11 @@ import UserItem from "./UserItem";
 
 const Users = (props) => {
   if (props.showLoading) {
-    return <h1>Fetching data ...</h1>;
+    return (
+      <div>
+        <h1>Fetching data ...</h1>
+      </div>
+    );
   }
 
   return (
