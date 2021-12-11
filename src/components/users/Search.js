@@ -13,7 +13,7 @@ const Search = (props) => {
       alert("Cannot be empty");
       return;
     }
-    searchUsers(this.state.text);
+    searchUsers(text);
     setText("");
   };
 
