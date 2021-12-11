@@ -1,25 +1,23 @@
-import React, { Component } from "react";
+import React from "react";
 import UserItem from "./UserItem";
 
-class Users extends Component {
-  componentDidMount() {
-    console.log("Users component is mounted ...");
+const Users = (props) => {
+  if (props.showLoading) {
+    return <h1>Fetching data ...</h1>;
   }
 
-  render() {
-    return (
-      <div style={userStyle}>
-        {this.props.usersData.map((user) => (
-          <UserItem key={user.id} user={user} />
-        ))}
-      </div>
-    );
-  }
-}
+  return (
+    <div style={userStyle}>
+      {props.usersData.map((user) => (
+        <UserItem key={user.id} user={user} />
+      ))}
+    </div>
+  );
+};
 
 const userStyle = {
   display: "grid",
-  gridTemplateColumns: "repeat(4, 1fr)",
+  gridTemplateColumns: "repeat(3, 1fr)",
   gridGap: "1rem",
 };
 

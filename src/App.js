@@ -9,21 +9,17 @@ class App extends Component {
   state = {
     usersData: [],
     title: "TCD0301-React",
-    searchText: "",
+    showLoading: false,
   };
-  componentDidMount() {
-    console.log("App.js is mounted ...");
-    axios.get("https://api.github.com/users").then((response) => {
-      console.log(response.data);
-      this.setState({
-        usersData: response.data,
-      });
-    });
-  }
 
-  searchUsers = (text) => {
+  searchUsers = async (text) => {
+    this.setState({ showLoading: true });
+    const response = await axios.get(
+      `https://api.github.com/search/users?q=${text}`
+    );
     this.setState({
-      searchText: text,
+      usersData: response.data.items,
+      showLoading: false,
     });
   };
 
@@ -33,8 +29,10 @@ class App extends Component {
         <Navbar title={this.state.title} />
         <div className="container">
           <Search searchUsers={this.searchUsers} />
-          {this.state.searchText}
-          <Users usersData={this.state.usersData} />
+          <Users
+            showLoading={this.state.showLoading}
+            usersData={this.state.usersData}
+          />
         </div>
       </div>
     );
