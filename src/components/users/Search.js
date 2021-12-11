@@ -14,6 +14,7 @@ class Search extends Component {
     if (this.state.text.trim() === "") {
       alert("Cannot be empty");
     }
+    this.props.searchUsers(this.state.text);
     this.setState({
       text: "",
     });

@@ -9,6 +9,7 @@ class App extends Component {
   state = {
     usersData: [],
     title: "TCD0301-React",
+    searchText: "",
   };
   componentDidMount() {
     console.log("App.js is mounted ...");
@@ -20,12 +21,19 @@ class App extends Component {
     });
   }
 
+  searchUsers = (text) => {
+    this.setState({
+      searchText: text,
+    });
+  };
+
   render() {
     return (
       <div>
         <Navbar title={this.state.title} />
         <div className="container">
-          <Search />
+          <Search searchUsers={this.searchUsers} />
+          {this.state.searchText}
           <Users usersData={this.state.usersData} />
         </div>
       </div>
