@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useReducer } from "react";
-import { SEARCH_USERS } from "../types";
+import { SEARCH_USERS, SET_LOADING } from "../types";
 import GithubContext from "./githubContext";
 import GithubReducer from "./githubReducer";
 
@@ -16,17 +16,24 @@ const GithubState = (props) => {
 
   // Search users
   const searchUsers = async (text) => {
-    // setShowLoading(true);
+    setShowLoading();
     const response = await axios.get(
       `https://api.github.com/search/users?q=${text}`
     );
-    // setUsersData(response.data.items);
     dispatch({
       type: SEARCH_USERS,
       payload: response.data.items,
     });
     // setShowLoading(false);
   };
+
+  // Set showLoading to true
+  const setShowLoading = () => {
+    dispatch({
+      type: SET_LOADING,
+    });
+  };
+
   return (
     <GithubContext.Provider
       value={{

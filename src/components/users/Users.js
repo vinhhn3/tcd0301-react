@@ -4,8 +4,7 @@ import UserItem from "./UserItem";
 
 const Users = (props) => {
   const githubContext = useContext(GithubContext);
-  const { showLoading } = props;
-  const { usersData } = githubContext;
+  const { usersData, showLoading } = githubContext;
 
   if (showLoading) {
     return (
