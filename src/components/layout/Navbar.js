@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import GithubContext from "../../context/github/githubContext";
 
-const Navbar = (props) => {
-  const { title } = props;
+const Navbar = () => {
+  const githubContext = useContext(GithubContext);
+  const { title } = githubContext;
   return (
     <div className="navbar bg-primary">
       <h1>{title}</h1>

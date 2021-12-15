@@ -13,7 +13,6 @@ import GithubState from "./context/github/githubState";
 
 const App = () => {
   const [usersData, setUsersData] = useState([]);
-  const [title, setTitle] = useState("TCD0301-React");
   const [user, setUser] = useState({});
 
   const clearUsers = () => {
@@ -29,7 +28,7 @@ const App = () => {
     <GithubState>
       <Router>
         <div>
-          <Navbar title={title} />
+          <Navbar />
           <div className="container">
             <Switch>
               <Route
