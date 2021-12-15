@@ -9,6 +9,7 @@ import NotFound from "./components/pages/NotFound";
 import Search from "./components/users/Search";
 import User from "./components/users/User";
 import Users from "./components/users/Users";
+import GithubState from "./context/github/githubState";
 
 const App = () => {
   const [usersData, setUsersData] = useState([]);
@@ -35,38 +36,40 @@ const App = () => {
   };
 
   return (
-    <Router>
-      <div>
-        <Navbar title={title} />
-        <div className="container">
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={() => (
-                <Fragment>
-                  <Search
-                    searchUsers={searchUsers}
-                    clearUsers={clearUsers}
-                    usersData={usersData}
-                  />
-                  <Users showLoading={showLoading} usersData={usersData} />
-                </Fragment>
-              )}
-            />
-            <Route exact path="/about" component={About} />
-            <Route
-              exact
-              path="/user/:login"
-              render={(props) => (
-                <User {...props} user={user} getUser={getUser} />
-              )}
-            />
-            <Route path="" component={NotFound} />
-          </Switch>
+    <GithubState>
+      <Router>
+        <div>
+          <Navbar title={title} />
+          <div className="container">
+            <Switch>
+              <Route
+                exact
+                path="/"
+                render={() => (
+                  <Fragment>
+                    <Search
+                      searchUsers={searchUsers}
+                      clearUsers={clearUsers}
+                      usersData={usersData}
+                    />
+                    <Users showLoading={showLoading} usersData={usersData} />
+                  </Fragment>
+                )}
+              />
+              <Route exact path="/about" component={About} />
+              <Route
+                exact
+                path="/user/:login"
+                render={(props) => (
+                  <User {...props} user={user} getUser={getUser} />
+                )}
+              />
+              <Route path="" component={NotFound} />
+            </Switch>
+          </div>
         </div>
-      </div>
-    </Router>
+      </Router>
+    </GithubState>
   );
 };
 
