@@ -4,9 +4,8 @@ import GithubContext from "../../context/github/githubContext";
 const Search = (props) => {
   const [text, setText] = useState("");
   const githubContext = useContext(GithubContext);
-  const { searchUsers, usersData } = githubContext;
+  const { searchUsers, usersData, clearUsers } = githubContext;
 
-  const { clearUsers } = props;
   const onChange = (event) => {
     setText(event.target.value);
   };

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useReducer } from "react";
-import { SEARCH_USERS, SET_LOADING } from "../types";
+import { CLEAR_USERS, SEARCH_USERS, SET_LOADING } from "../types";
 import GithubContext from "./githubContext";
 import GithubReducer from "./githubReducer";
 
@@ -24,13 +24,19 @@ const GithubState = (props) => {
       type: SEARCH_USERS,
       payload: response.data.items,
     });
-    // setShowLoading(false);
   };
 
   // Set showLoading to true
   const setShowLoading = () => {
     dispatch({
       type: SET_LOADING,
+    });
+  };
+
+  // Clear Users
+  const clearUsers = () => {
+    dispatch({
+      type: CLEAR_USERS,
     });
   };
 
@@ -42,6 +48,7 @@ const GithubState = (props) => {
         user: state.user,
         showLoading: state.showLoading,
         searchUsers,
+        clearUsers,
       }}
     >
       {props.children}
