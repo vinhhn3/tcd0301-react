@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import GithubContext from "../../context/github/githubContext";
 import UserItem from "./UserItem";
 
-const Users = (props) => {
+const Users = () => {
   const githubContext = useContext(GithubContext);
   const { usersData, showLoading } = githubContext;
 

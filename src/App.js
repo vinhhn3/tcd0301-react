@@ -1,5 +1,3 @@
-import axios from "axios";
-import { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Fragment } from "react/cjs/react.production.min";
 import "./App.css";
@@ -12,13 +10,6 @@ import Users from "./components/users/Users";
 import GithubState from "./context/github/githubState";
 
 const App = () => {
-  const [user, setUser] = useState({});
-
-  const getUser = async (login) => {
-    const response = await axios.get(`https://api.github.com/users/${login}`);
-    setUser(response.data);
-  };
-
   return (
     <GithubState>
       <Router>
@@ -40,9 +31,7 @@ const App = () => {
               <Route
                 exact
                 path="/user/:login"
-                render={(props) => (
-                  <User {...props} user={user} getUser={getUser} />
-                )}
+                render={(props) => <User {...props} />}
               />
               <Route path="" component={NotFound} />
             </Switch>
