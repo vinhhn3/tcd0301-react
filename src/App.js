@@ -9,7 +9,6 @@ const App = () => {
     <GithubState>
       <Router>
         <div>
-          <Navbar />
           <Home />
         </div>
       </Router>
