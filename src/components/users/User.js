@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { Fragment, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import GithubContext from "../../context/github/githubContext";
